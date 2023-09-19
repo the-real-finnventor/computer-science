@@ -18,6 +18,28 @@ class LinkedList:
         else:
             self.head = newNode
 
+    def len(self) -> int:
+        """
+        Finds the length of this list.
+        """
+        curr_len = 0
+        current = self.head
+        while current:
+            curr_len += 1
+            current = current.nextNode
+        return curr_len
+
+    def find(self, data) -> Node:
+        """
+        Retrieves the first node containing the given data.
+        If not found, will return None.
+        """
+        current = self.head
+        while current:
+            if current.data == data:
+                return current
+            current = current.nextNode
+
     def getLL(self):
         current = self.head
         linked_list = []
