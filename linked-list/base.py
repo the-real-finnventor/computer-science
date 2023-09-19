@@ -1,3 +1,11 @@
+class LinkedListError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return (repr(self.value))
+
+
 class Node:
     def __init__(self, data=None, nextNode=None):
         self.data = data
@@ -7,16 +15,6 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-
-    def insert(self, data):
-        newNode = Node(data)
-        if self.head:
-            current = self.head
-            while current.nextNode:
-                current = current.nextNode
-            current.nextNode = newNode
-        else:
-            self.head = newNode
 
     def len(self) -> int:
         """
@@ -40,6 +38,38 @@ class LinkedList:
                 return current
             current = current.nextNode
 
+    def insert_at(self, data, pos: int) -> None:
+        """
+        Places a new node with given data, 
+        at the position given. If the position given 
+        is past the end of the list, will return error.
+        """
+        newNode = Node(data)
+        if pos > self.len():
+            raise LinkedListError("Index out of range")
+        if not self.head:
+            self.head = newNode
+            return
+        curr_pos = 0
+        current = self.head
+        last_node = self.head
+        while current:
+            if curr_pos == pos:
+                newNode.nextNode = current
+                last_node.nextNode = newNode
+                break
+            last_node = current
+            current = current.nextNode
+            curr_pos += 1
+            if pos == self.len() and not current:
+                last_node.nextNode = newNode
+
+    def insert_front(self, data) -> None:
+        self.insert_at(data, 0)
+
+    def insert_end(self, data) -> None:
+        self.insert_at(data, self.len())
+
     def getLL(self):
         current = self.head
         linked_list = []
@@ -50,10 +80,8 @@ class LinkedList:
 
 
 def insertItems(items=[], ll=None):
-    created = False
     if not ll:
         ll = LinkedList()
-        created = True
     for item in items:
-        ll.insert(item)
+        ll.insert_end(item)
     return ll
