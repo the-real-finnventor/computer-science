@@ -24,8 +24,7 @@ class TestLL(unittest.TestCase):
     def test_insert_at(self):
         self.ll.insert_at(65, 3)
         self.assertIsNotNone(self.ll.find(65))
-        self.assertEqual(self.ll.find(65).data, 65)
-        self.assertEqual(self.ll.find(65).nextNode.data, 9)
+        self.assertEqual(self.ll.getLL(), [5, 7, 8, 65, 9, 2])
 
     def test_insert_at_past_end(self):
         with self.assertRaises(base.LinkedListError):
@@ -34,25 +33,23 @@ class TestLL(unittest.TestCase):
     def test_insert_front_1(self):
         self.ll.insert_front(73)
         self.assertIsNotNone(self.ll.find(73))
-        self.assertEqual(self.ll.find(73).data, 73)
-        self.assertEqual(self.ll.find(73).nextNode.data, 5)
+        self.assertEqual(self.ll.getLL(), [73, 5, 7, 8, 9, 2])
 
     def test_insert_front_2(self):
         self.ll.insert_front(0)
         self.assertIsNotNone(self.ll.find(0))
-        self.assertEqual(self.ll.find(0).data, 0)
-        self.assertEqual(self.ll.find(0).nextNode.data, 5)
+        self.assertEqual(self.ll.getLL(), [0, 5, 7, 8, 9, 2])
 
     def test_insert_end_1(self):
         self.ll.insert_end(86)
         self.assertIsNotNone(self.ll.find(86))
-        self.assertEqual(self.ll.find(86).data, 86)
+        self.assertEqual(self.ll.getLL(), [5, 7, 8, 9, 2, 86])
         self.assertIsNone(self.ll.find(86).nextNode)
 
     def test_insert_end_2(self):
         self.ll.insert_end(24)
         self.assertIsNotNone(self.ll.find(24))
-        self.assertEqual(self.ll.find(24).data, 24)
+        self.assertEqual(self.ll.getLL(), [5, 7, 8, 9, 2, 24])
         self.assertIsNone(self.ll.find(24).nextNode)
 
 

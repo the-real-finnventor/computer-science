@@ -45,9 +45,13 @@ class LinkedList:
         is past the end of the list, will return error.
         """
         newNode = Node(data)
-        if pos > self.len():
+        if pos > self.len() or pos < 0:
             raise LinkedListError("Index out of range")
         if not self.head:
+            self.head = newNode
+            return
+        if pos == 0:
+            newNode.nextNode = self.head
             self.head = newNode
             return
         curr_pos = 0
