@@ -4,13 +4,13 @@ import base
 
 class TestLL(unittest.TestCase):
     def setUp(self):
-        self.ll = base.insertItems([5, 7, 8, 9, 2])
-        self.empty_ll = base.insertItems([])
+        self.ll = base.LinkedList.insertItems([5, 7, 8, 9, 2])
 
     def test_len(self):
         self.assertEqual(self.ll.len(), 5)
 
     def test_empty_len(self):
+        self.empty_ll = base.LinkedList.insertItems([])
         self.assertEqual(self.empty_ll.len(), 0)
 
     def test_find(self):

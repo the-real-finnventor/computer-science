@@ -82,10 +82,10 @@ class LinkedList:
             current = current.nextNode
         return linked_list
 
-
-def insertItems(items=[], ll=None):
-    if not ll:
-        ll = LinkedList()
-    for item in items:
-        ll.insert_end(item)
-    return ll
+    @staticmethod
+    def insertItems(items=[], ll=None):
+        if not ll:
+            ll = LinkedList()
+        for item in items:
+            ll.insert_end(item)
+        return ll
