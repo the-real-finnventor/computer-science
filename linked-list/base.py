@@ -45,8 +45,6 @@ class LinkedList:
         is past the end of the list, will return error.
         """
         newNode = Node(data)
-        if pos > self.len() or pos < 0:
-            raise LinkedListError("Index out of range")
         if not self.head:
             self.head = newNode
             return
@@ -67,6 +65,8 @@ class LinkedList:
             curr_pos += 1
             if pos == self.len() and not current:
                 last_node.nextNode = newNode
+            elif not current:
+                raise LinkedListError("Index out of range")
 
     def insert_front(self, data) -> None:
         self.insert_at(data, 0)
