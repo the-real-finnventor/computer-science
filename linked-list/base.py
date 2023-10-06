@@ -89,3 +89,16 @@ class LinkedList:
         for item in items:
             ll.insert_end(item)
         return ll
+
+    def has_cycle(self) -> bool:
+        """
+        Checks if this list has a cycle.
+        """
+        seen = set()
+        current = self.head
+        while current:
+            if current in seen:
+                return True
+            seen.add(current)
+            current = current.nextNode
+        return False

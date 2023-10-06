@@ -52,6 +52,21 @@ class TestLL(unittest.TestCase):
         self.assertEqual(self.ll.getLL(), [5, 7, 8, 9, 2, 24])
         self.assertIsNone(self.ll.find(24).nextNode)
 
+    def test_has_cycle_1(self):
+        self.ll.find(2).nextNode = self.ll.find(5)
+        self.assertTrue(self.ll.has_cycle())
+
+    def test_has_cycle_2(self):
+        self.ll.find(9).nextNode = self.ll.find(9)
+        self.assertTrue(self.ll.has_cycle())
+
+    def test_has_cycle_3(self):
+        self.ll.find(9).nextNode = self.ll.find(7)
+        self.assertTrue(self.ll.has_cycle())
+
+    def test_has_cycle_4(self):
+        self.assertFalse(self.ll.has_cycle())
+
 
 if __name__ == "__main__":
     unittest.main()
