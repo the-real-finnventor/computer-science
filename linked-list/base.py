@@ -99,15 +99,13 @@ class LinkedList:
         slow = self.head  # slow pointer moves one at a time
         fast = self.head  # fast pointer moves 2x faster than slow
         if fast and fast.nextNode:
-            fast = slow.nextNode
-        while slow:
+            fast = fast.nextNode
+        while fast:
             if slow == fast:
                 return True
             slow = slow.nextNode
-            if fast:
-                fast = fast.nextNode
             if fast and fast.nextNode:
-                fast = fast.nextNode
+                fast = fast.nextNode.nextNode
         return False
 
     def has_duplicate(self) -> bool:
@@ -131,7 +129,7 @@ class LinkedList:
         If multible, returns the first one.
         If no duplicate, returns None.
         """
-        # Time: O(n^4)
+        # Time: O(n)
         # Space: O(n)
         seen = {}
         current = self.head
