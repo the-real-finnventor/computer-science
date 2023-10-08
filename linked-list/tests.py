@@ -67,6 +67,20 @@ class TestLL(unittest.TestCase):
     def test_has_cycle_4(self):
         self.assertFalse(self.ll.has_cycle())
 
+    def test_has_duplicate_1(self):
+        self.ll.insert_end(5)
+        self.assertTrue(self.ll.has_duplicate())
+
+    def test_has_duplicate_2(self):
+        self.assertFalse(self.ll.has_duplicate())
+
+    def test_find_most_duplicate_1(self):
+        self.ll.insert_end(5)
+        self.assertEqual(self.ll.find_most_duplicate(), 5)
+
+    def test_find_most_duplicate_2(self):
+        self.assertIsNone(self.ll.find_most_duplicate())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -94,11 +94,56 @@ class LinkedList:
         """
         Checks if this list has a cycle.
         """
+        # Time: O(n)
+        # Space: O(1)
+        slow = self.head  # slow pointer moves one at a time
+        fast = self.head  # fast pointer moves 2x faster than slow
+        if fast and fast.nextNode:
+            fast = slow.nextNode
+        while slow:
+            if slow == fast:
+                return True
+            slow = slow.nextNode
+            if fast:
+                fast = fast.nextNode
+            if fast and fast.nextNode:
+                fast = fast.nextNode
+        return False
+
+    def has_duplicate(self) -> bool:
+        """
+        Checks if this list has duplicate values.
+        """
+        # Time: O(n)
+        # Space: O(n)
         seen = set()
         current = self.head
         while current:
-            if current in seen:
+            if current.data in seen:
                 return True
-            seen.add(current)
+            seen.add(current.data)
             current = current.nextNode
         return False
+
+    def find_most_duplicate(self):
+        """
+        Finds the most duplicate value in this list. 
+        If multible, returns the first one.
+        If no duplicate, returns None.
+        """
+        # Time: O(n^4)
+        # Space: O(n)
+        seen = {}
+        current = self.head
+        while current:
+            if current.data in seen:
+                seen[current.data] += 1
+            else:
+                seen[current.data] = 1
+            current = current.nextNode
+        max_val = max(seen.values())
+        for key, value in seen.items():
+            if value != 1:
+                if value == max_val:
+                    return key
+        return None
