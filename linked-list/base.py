@@ -126,7 +126,7 @@ class LinkedList:
     def find_most_duplicate(self):
         """
         Finds the most duplicate value in this list. 
-        If multible, returns the first one.
+        If multiple, returns the first one.
         If no duplicate, returns None.
         """
         # Time: O(n)
