@@ -1,3 +1,6 @@
+from stack.base import Stack
+
+
 class LinkedListError(Exception):
     def __init__(self, value):
         self.value = value
@@ -145,3 +148,20 @@ class LinkedList:
                 if value == max_val:
                     return key
         return None
+
+    def reverse(self) -> list:
+        ll_stack = Stack()
+        curr = self.head
+        while curr:
+            ll_stack.push(curr.data)
+            curr = curr.nextNode
+        end = False
+        if ll_stack.peek(no_error=True) == None and ll_stack.peek(no_error=True, no_error_return=False) == False:
+            end = True
+        rv = []
+        while not end:
+            end = False
+            rv.append(ll_stack.pop())
+            if ll_stack.peek(no_error=True) == None and ll_stack.peek(no_error=True, no_error_return=False) == False:
+                end = True
+        return rv

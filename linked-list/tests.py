@@ -4,7 +4,8 @@ import base
 
 class TestLL(unittest.TestCase):
     def setUp(self):
-        self.ll = base.LinkedList.insertItems([5, 7, 8, 9, 2])
+        self.true = [5, 7, 8, 9, 2]
+        self.ll = base.LinkedList.insertItems(self.true)
 
     def test_len(self):
         self.assertEqual(self.ll.len(), 5)
@@ -80,6 +81,13 @@ class TestLL(unittest.TestCase):
 
     def test_find_most_duplicate_2(self):
         self.assertIsNone(self.ll.find_most_duplicate())
+
+    def test_reverse(self):
+        self.true.reverse()
+        self.assertEqual(self.ll.reverse(), self.true)
+
+    def test_empty_reverse(self):
+        self.assertEqual(base.LinkedList().reverse(), [])
 
 
 if __name__ == "__main__":
