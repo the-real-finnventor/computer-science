@@ -1,11 +1,11 @@
 import unittest
 
-import src
+import avl_tree
 
 
 class AVLTreeTests(unittest.TestCase):
     def setUp(self):
-        self.tree = src.AVLTree()
+        self.tree = avl_tree.AVLTree()
         self.tree.root = self.tree.insert(self.tree.root, 0)
         self.tree.root = self.tree.insert(self.tree.root, 8)
         self.tree.root = self.tree.insert(self.tree.root, 4)
