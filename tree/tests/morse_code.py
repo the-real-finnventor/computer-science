@@ -1,12 +1,12 @@
-import base
+import morse_code
 import unittest
 
 
 class MorseCodeTreeTests(unittest.TestCase):
     def setUp(self) -> None:
-        tree = base.MorseCodeTree()
+        tree = morse_code.MorseCodeTree()
         self.tree = tree
-        node = base.Node
+        node = morse_code.Node
         tree.root.l = node('e')
         tree.root.r = node('t')
         tree.root.l.l = node('i')
