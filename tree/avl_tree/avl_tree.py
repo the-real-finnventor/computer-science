@@ -3,15 +3,15 @@ from .tree_node import TreeNode
 
 class AVLTree(object):
     def __init__(self, root=None):
-        self.root = root
+        self._root: TreeNode = root
 
-    def insert(self, root, key):
+    def __insert(self, root, key):
         if not root:
             return TreeNode(key)
         elif key < root.value:
-            root.l = self.insert(root.l, key)
+            root.l = self.__insert(root.l, key)
         else:
-            root.r = self.insert(root.r, key)
+            root.r = self.__insert(root.r, key)
 
         root.h = 1 + max(self.getHeight(root.l),
                          self.getHeight(root.r))
@@ -33,6 +33,9 @@ class AVLTree(object):
             return self.lRotate(root)
 
         return root
+
+    def insert(self, key):
+        self._root = self.__insert(self._root, key)
 
     def lRotate(self, z):
 
@@ -76,36 +79,25 @@ class AVLTree(object):
 
         return self.getHeight(root.l) - self.getHeight(root.r)
 
-    def getAll(self, root):
-        if not root:
-            return ""
-
-        rv = "{0} ".format(root.value)
-        rv += self.getAll(root.l)
-        rv += self.getAll(root.r)
-        return rv
-
     def __str__(self):
-        root = self.root
-
-        if not root:
+        if not self._root:
             return ""
+        return str(self._root)
 
-        rv = "{0} ".format(root.value)
-        rv += self.getAll(root.l)
-        rv += self.getAll(root.r)
-        return rv
+    def __repr__(self) -> str:
+        return self.__str__()
 
-    def find(self, root, key):
-        if not root:
-            return False
-        if key == root.value:
-            return root
-        if key < root.value:
-            if root.l:
-                return self.find(root.l, key)
-            return False
-        if key > root.value:
-            if root.r:
-                return self.find(root.r, key)
-            return False
+    def find(self, key) -> TreeNode:
+        if not self._root:
+            return
+        return self._root.find(key)
+
+    def findLargerThan(self, key) -> set:
+        if not self._root:
+            return set()
+        return self._root.findLargerThan(key)
+
+    def findRange(self, start, end) -> set:
+        if not self._root:
+            return set()
+        return self._root.findRange(start, end)
