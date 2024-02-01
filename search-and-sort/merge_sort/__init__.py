@@ -17,5 +17,5 @@ def merge(sorted_list_1: list, sorted_list_2: list) -> list:
 def merge_sort(unsorted_list: list) -> list:
     if len(unsorted_list) <= 1:
         return unsorted_list
-    halfway = (len(unsorted_list) / 2).__floor__()
+    halfway = len(unsorted_list) // 2
     return merge(merge_sort(unsorted_list[:halfway]), merge_sort(unsorted_list[halfway:]))
